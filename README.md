@@ -1,2 +1,2 @@
 # ed-ii
-Trabalho de Esturutra de Dados II
+Trabalho de Estrutura de Dados II
