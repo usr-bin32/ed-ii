@@ -26,7 +26,6 @@ int main() {
 
     merge_sort(books.data(), books.size());
 
-    std::cout << books.size() << "\n";
     for (auto &book : books) {
         std::cout << book.isbn << std::endl;
     }

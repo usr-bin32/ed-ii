@@ -10,13 +10,12 @@ csv_parser::csv_parser(std::string path) {
 bool csv_parser::is_open() {
     return this->file.is_open();
 }
-#include <iostream>
+
 bool csv_parser::read_line() {
     if (!this->read_buffer_line()) {
         if (this->file.eof()) {
             return false;
         }
-        std::cout << "FILLING THE BUFFER\n";
 
         size_t remainder = this->characters_read;
         if (remainder > 0) {
