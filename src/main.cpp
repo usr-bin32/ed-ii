@@ -50,13 +50,16 @@ void read_input(std::vector<unsigned int> &sizes) {
     std::getline(input_file, line);
 
     unsigned int len = 0;
-    std::cin >> len;
+    std::istringstream iss(line);
+    iss >> len;
 
     sizes.reserve(len);
     for (int i = 0; i < len; i++) {
         std::getline(input_file, line);
+        std::istringstream iss(line);
+
         unsigned int size = 0;
-        std::cin >> size;
+        iss >> size;
 
         sizes.push_back(size);
     }
