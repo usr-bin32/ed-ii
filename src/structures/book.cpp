@@ -1,26 +1,25 @@
 #include "book.h"
 
-
 bool book::operator>(const book &b2) {
-    return this->isbn > b2.isbn;
+    return this->name > b2.name;
 }
 
 bool book::operator>=(const book &b2) {
-    return this->isbn >= b2.isbn;
+    return this->name >= b2.name;
 }
 
 bool book::operator<(const book &b2) {
-    return this->isbn < b2.isbn;
+    return this->name < b2.name;
 }
 
 bool book::operator<=(const book &b2) {
-    return this->isbn <= b2.isbn;
+    return this->name <= b2.name;
 }
 
 bool book::operator==(const book &b2) {
-    return this->isbn == b2.isbn;
+    return this->name == b2.name;
 }
 
 bool book::operator!=(const book &b2) {
-    return this->isbn != b2.isbn;
+    return this->name != b2.name;
 }
