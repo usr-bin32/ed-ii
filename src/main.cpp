@@ -28,7 +28,7 @@ int main() {
 
     std::vector<book> books;
     read_books(books);
-    
+
     for (auto size : sizes) {
         for (int i = 0; i < 5; i++) {
             randomize(books);
