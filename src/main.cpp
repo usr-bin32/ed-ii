@@ -20,30 +20,51 @@ void read_input(std::vector<unsigned int> &sizes);
 void read_books(std::vector<book> &books);
 void randomize(std::vector<book> &books);
 
-int main() {
+int main()
+{
     std::vector<unsigned int> sizes;
     read_input(sizes);
 
-    if (sizes.empty()) {
+    if (sizes.empty())
+    {
         return 0;
     }
 
     std::vector<book> books;
     read_books(books);
 
-    for (auto size : sizes) {
-        for (int i = 0; i < 5; i++) {
+    for (auto size : sizes)
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            std::cout << "Comeco" << std::endl;
+
             randomize(books);
-            quick_sort(books.data(), 0, size);
+            for (int i = 0; i < size; i++)
+            {
+                std::cout << books[i].name << std::endl;
+            }
+
+            std::cout << "================================================" << std::endl;
+
+            merge_sort(books.data(), size);
+            for (int i = 0; i < size; i++)
+            {
+                std::cout << books[i].name << std::endl;
+            }
+            std::cout << "Final" << std::endl;
         }
+        std::cout << std::endl;
         // TODO: adicionar outros métodos de ordenação
     }
 }
 
-void read_input(std::vector<unsigned int> &sizes) {
+void read_input(std::vector<unsigned int> &sizes)
+{
     std::ifstream input_file("./entrada.txt");
 
-    if (!input_file.is_open()) {
+    if (!input_file.is_open())
+    {
         std::cerr << "Failed to open `entrada.txt`!" << std::endl;
         return;
     }
@@ -56,7 +77,8 @@ void read_input(std::vector<unsigned int> &sizes) {
     iss >> len;
 
     sizes.reserve(len);
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++)
+    {
         std::getline(input_file, line);
         std::istringstream iss(line);
 
@@ -67,16 +89,19 @@ void read_input(std::vector<unsigned int> &sizes) {
     }
 }
 
-void read_books(std::vector<book> &books) {
+void read_books(std::vector<book> &books)
+{
     csv_parser parser("./res/data.csv");
 
-    if (!parser.is_open()) {
+    if (!parser.is_open())
+    {
         std::cerr << "Failed to open the `data.csv` file!" << std::endl;
         return;
     }
 
     parser.read_line(); // pula o cabeçalho
-    while (parser.read_line()) {
+    while (parser.read_line())
+    {
         book book;
         parser.get(9, book.name);
 
@@ -84,7 +109,8 @@ void read_books(std::vector<book> &books) {
     }
 }
 
-void randomize(std::vector<book> &books) {
+void randomize(std::vector<book> &books)
+{
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(books.begin(), books.end(), std::default_random_engine(seed));
 }

@@ -3,23 +3,29 @@
 template <typename T>
 int slice(T *arr, int first, int end)
 {
-  T aux;
-  int count = first-1;
+  int n = (end + first);
+  T pivo = arr[n / 2];
 
-  for (int i = first; i <= end - 1; i++)
+  int i = first - 1, j = end + 1;
+
+  do
   {
-    if (arr[i] < arr[first])
+    do
     {
-      count++;
-      aux = arr[i];
-      arr[i] = arr[count];
-      arr[first] = aux;
+      i++;
+    } while (arr[i] < pivo);
+
+    do
+    {
+      j--;
+    } while (arr[j] > pivo);
+
+    if (i <= j)
+    {
+      T aux = arr[i];
+      arr[i] = arr[j];
+      arr[j] = aux;
     }
-  }
-  aux = arr[first];
-  arr[first] = arr[count];
-  arr[count] = aux;
-  return count;
+  } while (i < j);
+  return j;
 };
-
-
