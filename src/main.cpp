@@ -13,6 +13,8 @@
 #include "structures/book.h"
 #include "parsing/csv_parser.h"
 #include "algorithms/merge_sort.h"
+#include "algorithms/quick_sort.h"
+#include "algorithms/shell_sort.h"
 
 void read_input(std::vector<unsigned int> &sizes);
 void read_books(std::vector<book> &books);
@@ -32,7 +34,7 @@ int main() {
     for (auto size : sizes) {
         for (int i = 0; i < 5; i++) {
             randomize(books);
-            merge_sort(books.data(), size);
+            quick_sort(books.data(), 0, size);
         }
         // TODO: adicionar outros métodos de ordenação
     }
