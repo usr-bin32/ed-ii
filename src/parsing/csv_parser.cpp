@@ -45,7 +45,7 @@ bool csv_parser::read_buffer_line() {
     int i;
     for (i = this->index; i < this->buffer_size; i++) {
         if (in_quotes && this->buffer[i] == '"') {
-            if (this->buffer[i + 1] == '"') {
+            if (i + 1 >= this->buffer->size && this->buffer[i + 1] == '"') {
                 // skip quote
                 i += 1;
             } else {
