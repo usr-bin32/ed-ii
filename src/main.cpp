@@ -22,6 +22,9 @@ void randomize(std::vector<book> &books);
 
 int main()
 {
+    int changesCounter = 0;
+    int comparisonsCounter = 0;
+
     std::vector<unsigned int> sizes;
     read_input(sizes);
 
@@ -37,25 +40,50 @@ int main()
     {
         for (int i = 0; i < 1; i++)
         {
-            std::cout << "Comeco" << std::endl;
 
             randomize(books);
-            for (int i = 0; i < size; i++)
+
+            for (int j = 0; j < size; j++)
             {
-                std::cout << books[i].name << std::endl;
+                std::cout << books[j].name << std::endl;
             }
 
-            std::cout << "================================================" << std::endl;
+            shell_sort(books.data(), size, comparisonsCounter, changesCounter);
+            std::cout << "ShellComparisonsCounter iteracao " << i << " : " << comparisonsCounter << std::endl;
+            std::cout << "ShellChangesCounter iteracao " << i << " : " << changesCounter << std::endl;
 
-            merge_sort(books.data(), size);
-            for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
             {
-                std::cout << books[i].name << std::endl;
+                std::cout << books[j].name << std::endl;
             }
-            std::cout << "Final" << std::endl;
         }
         std::cout << std::endl;
-        // TODO: adicionar outros métodos de ordenação
+        //TODO: adicionar outros métodos de ordenação
+
+        int changesCounter = 0;
+        int comparisonsCounter = 0;
+
+        for (int i = 0; i < 1; i++)
+        {
+
+            randomize(books);
+
+            for (int j = 0; j < size; j++)
+            {
+                std::cout << books[j].name << std::endl;
+            }
+            
+            std::cout << "Passei pela batata" << std::endl;
+            quick_sort(books.data(), 0, size, comparisonsCounter, changesCounter);
+            std::cout << "Passei pela batata de novo" << std::endl;
+            std::cout << "QuickComparisonsCounter " << i << " : " << comparisonsCounter << std::endl;
+            std::cout << "QuickChangesCounter " << i << " : " << changesCounter << std::endl;
+
+            for (int j = 0; j < size; j++)
+            {
+                std::cout << books[j].name << std::endl;
+            }
+        }
     }
 }
 
