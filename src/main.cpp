@@ -38,52 +38,58 @@ int main()
 
     for (auto size : sizes)
     {
-        for (int i = 0; i < 1; i++)
-        {
-
-            randomize(books);
-
-            for (int j = 0; j < size; j++)
-            {
-                std::cout << books[j].name << std::endl;
-            }
-
-            shell_sort(books.data(), size, comparisonsCounter, changesCounter);
-            std::cout << "ShellComparisonsCounter iteracao " << i << " : " << comparisonsCounter << std::endl;
-            std::cout << "ShellChangesCounter iteracao " << i << " : " << changesCounter << std::endl;
-
-            for (int j = 0; j < size; j++)
-            {
-                std::cout << books[j].name << std::endl;
-            }
-        }
         std::cout << std::endl;
-        //TODO: adicionar outros métodos de ordenação
+        std::cout << "Testando N: " << size << std::endl;
+        int totalComparisons = 0;
+        int totalChanges = 0;
+        double totalTimes = 0;
 
-        int changesCounter = 0;
-        int comparisonsCounter = 0;
+        for (int i = 0; i < 5; i++)
+        {
 
-        for (int i = 0; i < 1; i++)
+            randomize(books);
+            double t0 = double(clock()) / CLOCKS_PER_SEC;
+            shell_sort(books.data(), size, comparisonsCounter, changesCounter);
+            double t1 = double(clock()) / CLOCKS_PER_SEC;
+
+            totalComparisons += comparisonsCounter;
+            totalChanges += changesCounter;
+            totalTimes += t1 - t0;
+
+            changesCounter = 0;
+            comparisonsCounter = 0;
+        }
+
+        std::cout << std::endl;
+        std::cout << "Shell comparacoes: " << totalComparisons / 5 << std::endl;
+        std::cout << "Shell trocas: " << totalChanges / 5 << std::endl;
+        std::cout << "Shell tempo: " << totalTimes / 5 << std::endl;
+
+        totalComparisons = 0;
+        totalChanges = 0;
+        totalTimes = 0;
+        
+        for (int i = 0; i < 5; i++)
         {
 
             randomize(books);
 
-            for (int j = 0; j < size; j++)
-            {
-                std::cout << books[j].name << std::endl;
-            }
-            
-            std::cout << "Passei pela batata" << std::endl;
-            quick_sort(books.data(), 0, size, comparisonsCounter, changesCounter);
-            std::cout << "Passei pela batata de novo" << std::endl;
-            std::cout << "QuickComparisonsCounter " << i << " : " << comparisonsCounter << std::endl;
-            std::cout << "QuickChangesCounter " << i << " : " << changesCounter << std::endl;
+            double t0 = double(clock()) / CLOCKS_PER_SEC;
+            quick_sort(books.data(), 0, size - 1, comparisonsCounter, changesCounter);
+            double t1 = double(clock()) / CLOCKS_PER_SEC;
 
-            for (int j = 0; j < size; j++)
-            {
-                std::cout << books[j].name << std::endl;
-            }
+            totalComparisons += comparisonsCounter;
+            totalChanges += changesCounter;
+            totalTimes += t1 - t0;
+
+            changesCounter = 0;
+            comparisonsCounter = 0;
         }
+
+        std::cout << std::endl;
+        std::cout << "Quick comparacoes: " << totalComparisons / 5 << std::endl;
+        std::cout << "Quick trocas: " << totalChanges / 5 << std::endl;
+        std::cout << "Quick tempo: " << totalTimes / 5 << std::endl;
     }
 }
 

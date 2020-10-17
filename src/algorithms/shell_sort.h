@@ -22,7 +22,6 @@ void shell_sort(T *arr,  size_t size, int &comparisonsCounter, int &changesCount
             while (arr[j - h] > aux) 
             {
                 comparisonsCounter++;
-
                 arr[j] = arr[j - h];
                 changesCounter++;
                 j -= h;
@@ -30,7 +29,7 @@ void shell_sort(T *arr,  size_t size, int &comparisonsCounter, int &changesCount
                 if (j < h) break;
             }
             comparisonsCounter++;
-            
+
             arr[j] = aux;
             changesCounter++;
         }
