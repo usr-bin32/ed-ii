@@ -38,8 +38,10 @@ int main() {
         std::cout << "Shell Sort:" << std::endl;
         test_sort(static_cast<sort_function>(&shell_sort), books, size);
 
-        std::cout << "Quick Sort" << std::endl;
+        std::cout << "Quick Sort:" << std::endl;
         test_sort(static_cast<sort_function>(&quick_sort), books, size);
+
+        std::cout << std::endl;
     }
 }
 
