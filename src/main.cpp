@@ -72,7 +72,7 @@ void read_books(std::vector<book> &books) {
 
     if (!parser.is_open())
     {
-        std::cerr << "Failed to open the `data.csv` file!" << std::endl;
+        std::cerr << "Failed to open `data.csv`!" << std::endl;
         return;
     }
 
