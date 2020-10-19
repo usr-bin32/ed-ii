@@ -1,3 +1,5 @@
+#include <cstdlib>
+
 template <typename T>
 void merge(T *arr, size_t start, size_t middle, size_t end) {
     T *aux = new T[end - start + 1];
