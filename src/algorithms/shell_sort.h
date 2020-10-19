@@ -30,8 +30,10 @@ void shell_sort(T *arr, size_t size, int &comparisons, int &swaps) {
                 swaps++;
                 j -= h;
 
-                if (j < h)
+                if (j < h) {
+                    comparisons--;
                     break;
+                }
             }
             comparisons++;
 
