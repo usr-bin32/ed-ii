@@ -8,8 +8,7 @@ g++ ./src/main.cpp ./src/parsing/csv_parser.cpp ./src/structures/book.cpp -Ofast
 ```
 
 ## Modo de Uso
-Para usar o programa, basta executá-lo a partir do mesmo diretório que contém o arquivo de entrada `entrada.txt`. O programa fará a leitura da entrada automaticamente e sua será impressa na saída padrão (terminal). Para redirecionar a saída para um arquivo, basta executar o seguinte comando:
-
+Para usar o programa, basta executá-lo a partir do diretório raiz do projeto, que contém o arquivo de entrada `entrada.txt`. Além disso, o arquivo .csv deve ser colocado no caminho `./res/data.csv`. O programa fará a leitura da entrada automaticamente e sua será impressa na saída padrão (terminal). Para redirecionar a saída para um arquivo, basta executar o seguinte comando:
 ```sh
 ./project.out > saida.txt
 ```
