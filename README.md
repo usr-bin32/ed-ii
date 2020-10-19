@@ -16,11 +16,11 @@ Para usar o programa, basta executá-lo a partir do diretório raiz do projeto, 
 A saída do programa será exibida no seguinte formato:
 ```
 N = 1000
-Shell Sort:
+ShellSort:
     Comparações: 14512
     Trocas: 14512
     Tempo: 0.0009102s
-Quick Sort:
+QuickSort:
     Comparações: 14289
     Trocas: 2328
     Tempo: 0.0007154s
