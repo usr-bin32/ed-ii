@@ -35,10 +35,10 @@ int main() {
     for (auto size : sizes) {
         std::cout << "N = " << size << std::endl;
 
-        std::cout << "Shell Sort:" << std::endl;
+        std::cout << "ShellSort:" << std::endl;
         test_sort(static_cast<sort_function>(&shell_sort), books, size);
 
-        std::cout << "Quick Sort:" << std::endl;
+        std::cout << "QuickSort:" << std::endl;
         test_sort(static_cast<sort_function>(&quick_sort), books, size);
 
         std::cout << std::endl;
