@@ -115,5 +115,5 @@ void test_sort(sort_function sort, std::vector<book> &vector, size_t size) {
 
     std::cout << "    Comparações: " << total_comparisons / NUM_TESTS << std::endl;
     std::cout << "    Trocas: " << total_swaps / NUM_TESTS << std::endl;
-    std::cout << "    Tempo: " << total_time / NUM_TESTS << " s" << std::endl;
+    std::cout << "    Tempo: " << total_time / NUM_TESTS << "s" << std::endl;
 }
