@@ -7,7 +7,9 @@
 #include <fstream>
 
 struct csv_handle {
+    // Posição da coluna na linha
     size_t position;
+    // Comprimento em bytes do conteúdo da coluna
     size_t length;
 };
 
@@ -16,8 +18,12 @@ class csv_parser {
     csv_parser(std::string path);
 
     bool is_open();
+
+    // Lê e interpreta a próxima linha do arquivo .csv carregado usando
+    // leitura "bufferizada"
     bool read_line();
 
+    // Lê a n-ésima coluna da última linha lida e executa a conversão de tipo
     template <typename T>
     bool get(size_t index, T &out);
 
@@ -30,8 +36,11 @@ class csv_parser {
 
     size_t index = 0;
     size_t characters_read = 0;
+
+    // Armazena os dados das colunas da última linha lida
     std::vector<csv_handle> handles;
 
+    // Interpreta a próxima linha de .csv presente no buffer
     bool read_buffer_line();
 
     template <typename T>

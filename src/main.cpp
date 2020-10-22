@@ -15,18 +15,28 @@ using sort_function = void (*)(book *, size_t, int &, int &);
 
 const int NUM_TESTS = 5;
 
+// Lê o arquivo de entrada contendo o tamanho dos vetores para os testes de
+// ordenação
 void read_input(std::vector<unsigned int> &sizes);
+
+// Lê o arquivo de dados .csv e preenche o vetor de entrada com os títulos dos
+// livros
 void read_books(std::vector<book> &books);
+
+// Embaralha os itens do vetor de livros aleatoriamente
 void randomize(std::vector<book> &books);
 
+// Executa uma dada função de ordenação e imprime o tempo de execução e os
+// números de trocas e de comparações entre chaves
 void test_sort(sort_function sort_function, std::vector<book> &vector, size_t size);
 
 int main() {
     std::vector<unsigned int> sizes;
     read_input(sizes);
 
+    // abandona a execução do programa em caso de falha de leitura
     if (sizes.empty()) {
-        return 0;
+        return -1;
     }
 
     std::vector<book> books;
@@ -70,24 +80,22 @@ void read_input(std::vector<unsigned int> &sizes) {
 void read_books(std::vector<book> &books) {
     csv_parser parser("./res/data.csv");
 
-    if (!parser.is_open())
-    {
+    if (!parser.is_open()) {
         std::cerr << "Failed to open `data.csv`!" << std::endl;
         return;
     }
 
-    parser.read_line(); // pula o cabeçalho
-    while (parser.read_line())
-    {
+    // pula o cabeçalho do arquivo .csv
+    parser.read_line();
+    while (parser.read_line()) {
         book book;
+        // lê a nona coluna da linha do .csv
         parser.get(9, book.name);
-
         books.push_back(std::move(book));
     }
 }
 
-void randomize(std::vector<book> &books)
-{
+void randomize(std::vector<book> &books) {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(books.begin(), books.end(), std::default_random_engine(seed));
 }

@@ -12,6 +12,10 @@ bool csv_parser::is_open() {
 }
 
 bool csv_parser::read_line() {
+    // lê a próxima linha do .csv. Caso a linha não esteja totalmente carregada
+    // na memória, a parte inicial da linha já presente na memória principal (se houver)
+    // é movida para o início do buffer e uma nova leitura de disco é executada para
+    // completar o buffer
     if (!this->read_buffer_line()) {
         if (this->file.eof()) {
             return false;
@@ -45,19 +49,25 @@ bool csv_parser::read_buffer_line() {
     int i;
     for (i = this->index; i < this->buffer_size; i++) {
         if (in_quotes && this->buffer[i] == '"') {
-            if (i + 1 >= this->buffer.size() && this->buffer[i + 1] == '"') {
-                // skip quote
+            if (i + 1 < this->buffer.size() && this->buffer[i + 1] == '"') {
+                // pular aspas duplas escapadas "", que pertencem ao próprio
+                // conteúdo da coluna
                 i += 1;
             } else {
+                // as aspas são aspas de fechamento do conteúdo da coluna
                 in_quotes = false;
             }
         } else if (!in_quotes) {
             if (this->buffer[i] == '"') {
+                // abertura de aspas do conteúdo da coluna
                 in_quotes = true;
             } else if (this->buffer[i] == ',' || this->buffer[i] == '\n') {
+                // , ou \n fora de aspas => fim de uma coluna
+
                 size_t position = j;
                 size_t length = i - j;
 
+                // remove as aspas externas do conteúdo da coluna
                 if (i > 0 && (this->buffer[i - 1]) == '"') {
                     position += 1;
                     length -= 2;
@@ -65,6 +75,7 @@ bool csv_parser::read_buffer_line() {
 
                 this->handles.push_back({position, length});
 
+                // posição da próxima coluna
                 j = i + 1;
 
                 if (this->buffer[i] == '\n') {
