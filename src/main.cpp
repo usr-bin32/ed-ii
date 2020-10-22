@@ -58,8 +58,7 @@ int main() {
 void read_input(std::vector<unsigned int> &sizes) {
     std::ifstream input_file("./entrada.txt");
 
-    if (!input_file.is_open())
-    {
+    if (!input_file.is_open()) {
         std::cerr << "Failed to open `entrada.txt`!" << std::endl;
         return;
     }
@@ -68,8 +67,7 @@ void read_input(std::vector<unsigned int> &sizes) {
     input_file >> len;
 
     sizes.reserve(len);
-    for (int i = 0; i < len; i++)
-    {
+    for (int i = 0; i < len; i++) {
         unsigned int size = 0;
         input_file >> size;
 
@@ -105,8 +103,7 @@ void test_sort(sort_function sort, std::vector<book> &vector, size_t size) {
     int total_swaps = 0;
     double total_time = 0;
 
-    for (int i = 0; i < NUM_TESTS; i++)
-    {
+    for (int i = 0; i < NUM_TESTS; i++) {
         randomize(vector);
 
         int comparisons;
